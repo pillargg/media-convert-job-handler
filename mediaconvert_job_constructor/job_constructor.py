@@ -22,6 +22,7 @@ class MediaConvertJobConstructor:
             "TimecodeConfig": {
                 "Source": "ZEROBASED"
             },
+            'AdAvailOffset': 0
         }
 
     def add_task_token(self, task_token: str):
@@ -68,7 +69,10 @@ class MediaConvertJobConstructor:
 
     def _construct_output_group(self, output: dict):
         self.n += 1
-        return {
+        destination = output['bucket']
+        if 's3://' in destination:
+            destination = destination.replace('s3://', '')
+        group = {
             "Name": f"File Group {self.n}",
             "Outputs": [{
                 "ContainerSettings": {
@@ -79,12 +83,40 @@ class MediaConvertJobConstructor:
                     "CodecSettings": {
                         "Codec": "H_264",
                         "H264Settings": {
-                            "MaxBitrate": output["bitrate"],
-                            "RateControlMode": "QVBR",
-                            "SceneChangeDetect": "TRANSITION_DETECTION"
-                        },
+                            "InterlaceMode": "PROGRESSIVE",
+                            "NumberReferenceFrames": 3,
+                            "Syntax": "DEFAULT",
+                            "Softness": 0,
+                            "GopClosedCadence": 1,
+                            "GopSize": 90,
+                            "Slices": 1,
+                            "GopBReference": "DISABLED",
+                            "SlowPal": "DISABLED",
+                            "EntropyEncoding": "CABAC",
+                            "Bitrate": output['bitrate'],
+                            "FramerateControl": "INITIALIZE_FROM_SOURCE",
+                            "RateControlMode": "CBR",
+                            "CodecProfile": "MAIN",
+                            "Telecine": "NONE",
+                            "MinIInterval": 0,
+                            "AdaptiveQuantization": "AUTO",
+                            "CodecLevel": "AUTO",
+                            "FieldEncoding": "PAFF",
+                            "SceneChangeDetect": "ENABLED",
+                            "QualityTuningLevel": "SINGLE_PASS",
+                            "FramerateConversionAlgorithm": "DUPLICATE_DROP",
+                            "UnregisteredSeiTimecode": "DISABLED",
+                            "GopSizeUnits": "FRAMES",
+                            "ParControl": "INITIALIZE_FROM_SOURCE",
+                            "NumberBFramesBetweenReferenceFrames": 2,
+                            "RepeatPps": "DISABLED",
+                            "DynamicSubGop": "STATIC"
+                        }
                     },
-                    "Crop": output["crop"],
+                    "AfdSignaling": "NONE",
+                    "DropFrameTimecode": "ENABLED",
+                    "RespondToAfd": "NONE",
+                    "ColorMetadata": "INSERT",
                     "Width": output["width"],
                     "Height": output["height"],
                     "ScalingBehavior": "DEFAULT",
@@ -94,24 +126,34 @@ class MediaConvertJobConstructor:
                     "Sharpness": 50,
                 },
                 "AudioDescriptions": [{
+                    "AudioTypeControl": "FOLLOW_INPUT",
                     "CodecSettings": {
                         "Codec": "AAC",
                         "AacSettings": {
-                            "Bitrate": 96000,
+                            "AudioDescriptionBroadcasterMix": "NORMAL",
+                            "Bitrate": 384000,
+                            "RateControlMode": "CBR",
+                            "CodecProfile": "LC",
                             "CodingMode": "CODING_MODE_2_0",
-                            "SampleRate": 48000
+                            "RawFormat": "NONE",
+                            "SampleRate": 48000,
+                            "Specification": "MPEG4"
                         }
-                    }
+                    },
+                    "LanguageCodeControl": "FOLLOW_INPUT"
                 }],
                 "NameModifier": output["modifier"],
             }],
             "OutputGroupSettings": {
                 "Type": "FILE_GROUP_SETTINGS",
                 "FileGroupSettings": {
-                    "Destination": f"s3://{output['bucket']}/"
+                    "Destination": f"s3://{destination}/"
                 }
             }
         }
+        if output["crop"] is not None:
+            group["Outputs"][0]["VideoDescription"]["Crop"] = output["crop"]
+        return group
 
     def _construct_input_group(self, input_video: dict):
         return {
@@ -169,7 +211,7 @@ class MediaConvertJobConstructor:
         for output in self.outputs:
             group = self._construct_output_group(output)
             if self.overlay:
-                group['OutputGroups'][0]['Outputs'][0]['VideoDescription']['VideoPreprocessors'] = self.overlay
-            job["Settings"]["OutputGroups"].append()
+                group['Outputs'][0]['VideoDescription']['VideoPreprocessors'] = self.overlay
+            job["Settings"]["OutputGroups"].append(group)
 
         return job

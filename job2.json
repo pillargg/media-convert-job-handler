@@ -1,0 +1,176 @@
+{
+    "UserMetadata": {
+        "TaskToken1": "7CLgDdgStJGId3Etmwm9ar6ppkeHgY1ORkV3a6zDEaNfcBNYihh7r2KmeSW2mjFvuUFxyQiJnxp3liGAY4FqeVlWpeY59iBXlsZIB5cO9I38MzjOq9ZREkImxroN63Zku5dNpKzN4y9Oa26UXsu4TO4TAPEDFvtnkOsXvzLxfOPI68sBBBzIMzcBVL7lO3UJwgJMn5cXKWI5eGKqP1svtjWtIYqVB7t1gbUzcGc7dYc9Ebdz0gnDyTHQ9rSFiKYE",
+        "TaskToken2": "CPGF402GRrvVCEBLAtqAGHMQBcAo64Aia48Eg7PC9XsvPV808pYG5KiR2EPFyaBVkg6TtMJqPOFo3EQYq4uZxCHdRDruGZkhSNNr6VfhgyS7635sS5eOPMMvNyqXe1FKxyjAmNOsUCMpxKBv2hla5NX4c8knOC3rWITNuvHcDNXLjw6qsNR1JWsuw1jPNsGMGNwYKWeL0MaECaRh9EkXtnH5NLaIT9hvV2C4zgBaKmtMTHBFXa40RUpqjlPjW2Dc",
+        "TaskToken3": "PT8Rq2LkRRm4km30rIXpgYJJ0Dn57VTM18mFcGdeFNuW3EKP58K3SFRhn5KO6fPrb2HoWQXJrWWHrdpTofk38iAg2ndjmtugO9sn2Csovy7vG4lHB3Ru3wx5og7MR0ztyWWjZOuXLam8kyW5DgxxOuu5NeOreQvohbsTgaM416PwCcdKRso24jfMeF1sXbZ6MrgvUufQDNP55mx8XTYaJCP4q2Zk7iHgq692gUBj3qh6NFRclbeGF0LHVEERWdyQ"
+    },
+    "Role": "",
+    "Queue": "",
+    "AccelerationSettings": {
+        "Mode": "DISABLED"
+    },
+    "Priority": 0,
+    "StatusUpdateInterval": "SECONDS_10",
+    "Settings": {
+        "TimecodeConfig": {
+            "Source": "ZEROBASED"
+        },
+        "AdAvailOffset": 0,
+        "Inputs": [{
+                "AudioSelectors": {
+                    "Audio Selector 1": {
+                        "Offset": 0,
+                        "DefaultSelection": "DEFAULT",
+                        "ProgramSelection": 1
+                    }
+                },
+                "VideoSelector": {
+                    "ColorSpace": "FOLLOW",
+                    "Rotate": "DEGREE_0",
+                    "AlphaBehavior": "DISCARD"
+                },
+                "FilterEnable": "AUTO",
+                "PsiControl": "USE_PSI",
+                "FilterStrength": 0,
+                "DeblockFilter": "DISABLED",
+                "DenoiseFilter": "DISABLED",
+                "InputScanType": "AUTO",
+                "TimecodeSource": "ZEROBASED",
+                "FileInput": "s3://chandlertestbucket/input.mp4"
+            },
+            {
+                "AudioSelectors": {
+                    "Audio Selector 1": {
+                        "Offset": 0,
+                        "DefaultSelection": "DEFAULT",
+                        "ProgramSelection": 1
+                    }
+                },
+                "VideoSelector": {
+                    "ColorSpace": "FOLLOW",
+                    "Rotate": "DEGREE_0",
+                    "AlphaBehavior": "DISCARD"
+                },
+                "FilterEnable": "AUTO",
+                "PsiControl": "USE_PSI",
+                "FilterStrength": 0,
+                "DeblockFilter": "DISABLED",
+                "DenoiseFilter": "DISABLED",
+                "InputScanType": "AUTO",
+                "TimecodeSource": "ZEROBASED",
+                "FileInput": "s3://chandlertestbucket/input.mp4"
+            },
+            {
+                "AudioSelectors": {
+                    "Audio Selector 1": {
+                        "Offset": 0,
+                        "DefaultSelection": "DEFAULT",
+                        "ProgramSelection": 1
+                    }
+                },
+                "VideoSelector": {
+                    "ColorSpace": "FOLLOW",
+                    "Rotate": "DEGREE_0",
+                    "AlphaBehavior": "DISCARD"
+                },
+                "FilterEnable": "AUTO",
+                "PsiControl": "USE_PSI",
+                "FilterStrength": 0,
+                "DeblockFilter": "DISABLED",
+                "DenoiseFilter": "DISABLED",
+                "InputScanType": "AUTO",
+                "TimecodeSource": "ZEROBASED",
+                "FileInput": "s3://chandlertestbucket/input.mp4"
+            }
+        ],
+        "OutputGroups": [{
+            "Name": "File Group 1",
+            "Outputs": [{
+                "ContainerSettings": {
+                    "Container": "MP4",
+                    "Mp4Settings": {}
+                },
+                "VideoDescription": {
+                    "CodecSettings": {
+                        "Codec": "H_264",
+                        "H264Settings": {
+                            "InterlaceMode": "PROGRESSIVE",
+                            "NumberReferenceFrames": 3,
+                            "Syntax": "DEFAULT",
+                            "Softness": 0,
+                            "GopClosedCadence": 1,
+                            "GopSize": 90,
+                            "Slices": 1,
+                            "GopBReference": "DISABLED",
+                            "SlowPal": "DISABLED",
+                            "EntropyEncoding": "CABAC",
+                            "Bitrate": 12000000,
+                            "FramerateControl": "INITIALIZE_FROM_SOURCE",
+                            "RateControlMode": "CBR",
+                            "CodecProfile": "MAIN",
+                            "Telecine": "NONE",
+                            "MinIInterval": 0,
+                            "AdaptiveQuantization": "AUTO",
+                            "CodecLevel": "AUTO",
+                            "FieldEncoding": "PAFF",
+                            "SceneChangeDetect": "ENABLED",
+                            "QualityTuningLevel": "SINGLE_PASS",
+                            "FramerateConversionAlgorithm": "DUPLICATE_DROP",
+                            "UnregisteredSeiTimecode": "DISABLED",
+                            "GopSizeUnits": "FRAMES",
+                            "ParControl": "INITIALIZE_FROM_SOURCE",
+                            "NumberBFramesBetweenReferenceFrames": 2,
+                            "RepeatPps": "DISABLED",
+                            "DynamicSubGop": "STATIC"
+                        }
+                    },
+                    "AfdSignaling": "NONE",
+                    "DropFrameTimecode": "ENABLED",
+                    "RespondToAfd": "NONE",
+                    "ColorMetadata": "INSERT",
+                    "Width": 1920,
+                    "Height": 1080,
+                    "ScalingBehavior": "DEFAULT",
+                    "TimecodeInsertion": "DEFAULT",
+                    "VideoPreprocessors": {
+                        "InsertableImages": [{
+                            "Width": 350,
+                            "Height": 100,
+                            "ImageX": 0,
+                            "ImageY": 900,
+                            "Layer": 1,
+                            "ImageInserterInput": "https://pillaroverlays.s3.amazonaws.com/watermark.png",
+                            "Opacity": 50
+                        }]
+                    },
+                    "AntiAlias": "ENABLED",
+                    "Sharpness": 50
+                },
+                "AudioDescriptions": [{
+                    "AudioTypeControl": "FOLLOW_INPUT",
+                    "CodecSettings": {
+                        "Codec": "AAC",
+                        "AacSettings": {
+                            "AudioDescriptionBroadcasterMix": "NORMAL",
+                            "Bitrate": 384000,
+                            "RateControlMode": "CBR",
+                            "CodecProfile": "LC",
+                            "CodingMode": "CODING_MODE_2_0",
+                            "RawFormat": "NONE",
+                            "SampleRate": 48000,
+                            "Specification": "MPEG4"
+                        }
+                    },
+                    "LanguageCodeControl": "FOLLOW_INPUT"
+                }],
+                "NameModifier": "output"
+            }],
+            "OutputGroupSettings": {
+                "Type": "FILE_GROUP_SETTINGS",
+                "FileGroupSettings": {
+                    "Destination": "s3://chandlertestbucket/"
+                }
+            }
+        }]
+    }
+}
